@@ -28,6 +28,7 @@ tee  //用于将数据重定向到文件和屏幕
 用户/组操作：
 id  //查看用户信息
 useradd  //创建用户并不添加密码
+passwd  //给用户添加密码
 usermod  //修改用户
 userdel  //删除用户   [-r]删除用户及主目录
 groupadd  //创建组    [-g]指定gid    [-r]改组名为gid映射    [-n]指定名称 
@@ -41,9 +42,9 @@ chage -E yyyy-mm-dd  //将在指定日期使用户到期
 chmod [u/g/o][+/-][r/w/x] finame/dirname  //更改 user/group/other 加/减 读/写/执行 的权限
 chmod 777 filename  // r=4,w=2,x=1,777即为ugo+rwx
 chmod -R  //目录树递归设置权限
-chown username filename  //更改文件所有权    chown -R username filename  //递归地更改文件所有权
-chown :username dirname  //更改组的所有权
-chown owner:group dirname  //同时更改所有者和组权限
+chown username filename  //更改文件的用户所有权    chown -R username filename  //递归地更改文件所有权
+chown :grpname filename  //更改文件的组所有权
+chown owner:group filename  //同时更改所有者和组权限
 chgrp //也可以用来更改组的所有权
 setuid=u+s;setgid=g+s;sticky=o+t  //以拥有文件的用户/组执行，即继承权限。是一种特殊权限
 chmod 2770 dir  //chmod第四位表示上文特殊权限
@@ -62,6 +63,7 @@ pkill -1 -u student   //强行中止用户所有进程
 控制系统服务：
 systemctl status sshd.service  //查看状态
 systemctl [stop/start/reload] sshd.service  //停止/启动/重新加载服务，重新加载服务时，进程ID不会改变
+
 
 
 
