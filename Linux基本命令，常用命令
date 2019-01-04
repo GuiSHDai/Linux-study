@@ -1,0 +1,32 @@
+date [+%R] [+%X]  //显示时间  [时分] [mm/dd/yyyy]
+passwd  //改密码，密码允许大小写字母，数字和符号
+file  //显示文件类型
+head  //显示开头  [-n]显示前n行
+tail [-n]  //同head
+wc  //计算文件中行，字符，字的数量  [-l] [-w] [-c]仅显示行数，字数，字符数
+history  //显示之前输入的命令，以顺序编号开头
+cd  //更改目录  [-]  //返回上一个所在位置所在的目录（非上一级目录）
+cp [file1] [dirname]  //复制文件    [-r dir1 dir2]复制目录
+mv [file1] [dirname]  //移动文件    [-r dir1 dir2]移动目录
+rm  //删除文件    [-r dir/]删除目录
+mkdir  //创建目录
+rmdir  //删除目录  [-R]递归地删除目录及目录内的文件
+touch  //创建文件
+> filename  //重定向stdout到文件(覆盖)
+>> filename  //重定向stdout到文件（附加）
+2> filename  //重定向stderr到文件
+2>  /dev/null  //将stderr错误信息重定向奥/dev/null，从而将它丢弃
+&> filename  //将stdout和stderr合并到一个文件
+>>filename 2>&1  //合并stdout和stderr，并附加到当前文件
+cat  //首尾连接文件，或者查看文件
+diff  //分析两个文件，并输出两个文件的不同行
+ps  [-f]  //显示运行中的进程    [-a]查看与某一终端有关的所有进程    [-u]查看用户
+tee  //用于将数据重定向到文件和屏幕
+id  //查看用户信息
+useradd  //创建用户并不添加密码
+usermod  //修改用户
+userdel  //删除用户   [-r]删除用户及主目录
+groupadd  //创建组    [-g]指定gid    [-r]改组名为gid映射    [-n]指定名称 
+groupmod  //更改组  
+tail -5 /etc/group  //可查看组中用户及uid
+change
