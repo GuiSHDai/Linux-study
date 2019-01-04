@@ -1,4 +1,6 @@
+系统命令及文件操作：
 date [+%R] [+%X]  //显示时间  [时分] [mm/dd/yyyy]
+date -d "+45 days" //计算未来45天的日期
 passwd  //改密码，密码允许大小写字母，数字和符号
 file  //显示文件类型
 head  //显示开头  [-n]显示前n行
@@ -22,6 +24,8 @@ cat  //首尾连接文件，或者查看文件
 diff  //分析两个文件，并输出两个文件的不同行
 ps  [-f]  //显示运行中的进程    [-a]查看与某一终端有关的所有进程    [-u]查看用户
 tee  //用于将数据重定向到文件和屏幕
+
+用户/组操作：
 id  //查看用户信息
 useradd  //创建用户并不添加密码
 usermod  //修改用户
@@ -29,4 +33,37 @@ userdel  //删除用户   [-r]删除用户及主目录
 groupadd  //创建组    [-g]指定gid    [-r]改组名为gid映射    [-n]指定名称 
 groupmod  //更改组  
 tail -5 /etc/group  //可查看组中用户及uid
-change
+chage -d 0 username  //强制用户下次登陆时更新密码
+chage -l username  //列出用户名的当前设置
+chage -E yyyy-mm-dd  //将在指定日期使用户到期
+
+权限操作：
+chmod [u/g/o][+/-][r/w/x] finame/dirname  //更改 user/group/other 加/减 读/写/执行 的权限
+chmod 777 filename  // r=4,w=2,x=1,777即为ugo+rwx
+chmod -R  //目录树递归设置权限
+chown username filename  //更改文件所有权    chown -R username filename  //递归地更改文件所有权
+chown :username dirname  //更改组的所有权
+chown owner:group dirname  //同时更改所有者和组权限
+chgrp //也可以用来更改组的所有权
+setuid=u+s;setgid=g+s;sticky=o+t  //以拥有文件的用户/组执行，即继承权限。是一种特殊权限
+chmod 2770 dir  //chmod第四位表示上文特殊权限
+*不同于windows，linux文件子目录不自动继承上级目录权限
+*权限大写X表示仅对目录而不是普通文件设置权限
+
+进程操作：
+umask 007  /屏蔽o的所有权限，027：屏蔽组写入权限和其他的所有权限
+echo “umask 007” >> ~/.bashrc  //更改默认umask使其阻止不属于组的用户的所有访问权限，再创建文件/目录时就会继承此默认权限
+jobs  //显示后台作业,以job number开头
+fg %[job number]  /将后台作业带到前台。ps：ctrl+z将作业重新发送到后台
+ps j  //显示进程信息，T为暂停状态，S为睡眠中，Z为僵停
+pgrep -l -u username  //查看用户进程
+pkill -1 -u student   //强行中止用户所有进程
+
+控制系统服务：
+systemctl status sshd.service  //查看状态
+systemctl [stop/start/reload] sshd.service  //停止/启动/重新加载服务，重新加载服务时，进程ID不会改变
+
+
+
+
+
