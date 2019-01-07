@@ -73,7 +73,7 @@ ssh-copy-id root@desktop  //将密钥复制到目标系统，复制了 ～/.ssh/
 e.g. : ssh-copy-id -i ~/.ssh /id_rsa.pub root@server.example.com
 /etc/ssh/sshd-config  PermitRootLogin yes/no //允许、禁止root用户远程登陆
 /etc/ssh/sshd-config  PermitRootLogin with-out password  //仅允许以root进行基于密钥的登陆
-/etc/ssh/sshd-config  PasswordAuthentication yes/no  //打开、禁止密码身份验证（如果之前已经连接并创建了密钥则不影响）
+/etc/ssh/sshd-config  PasswordAuthentication yes/no  //打址开、禁止密码身份验证（如果之前已经连接并创建了密钥则不影响）
 systemctl restart sshd  //重启sshd服务，使变更生效
 
 系统日志：
@@ -117,6 +117,12 @@ nmcli con show --active //查看活动连接
 nmcli dev disconnect DEVICENAME  //禁用某一接口并防止自动连接（需root）
 nmcli con mod "static" connection.autoconnect no  //关闭自动连接
 nmcli con mod "static" ipv4.dns/ipv4.address xx.xx.xx.xx  //设置IPV4的DNS和IP地址
+hostname  //显示或修改系统的完全限定主机名
+hostnamectl set-hostname new_hostname  //修改hostname，也可在/etc/hostname文件中直接修改。如果此文件不存在，则主机名在接口被分配了IP地址时由反向DNS查询设定。
+host cHOSTNAME  //用于测试DNS服务器连接
+nmcli con mod "lab" +ipv4.addresses xx.xx.xx.xx  //修改连接的IP地址
+echo "xx.xx.xx.xx private" >> /etc/hosts  //修改host文件，使其可以被引用为private
+
 
 
 
