@@ -123,6 +123,69 @@ host cHOSTNAME  //用于测试DNS服务器连接
 nmcli con mod "lab" +ipv4.addresses xx.xx.xx.xx  //修改连接的IP地址
 echo "xx.xx.xx.xx private" >> /etc/hosts  //修改host文件，使其可以被引用为private
 
+归档文件并复制文件：
+tar [c]//创建  [t]//列出存档内容  [x]//提取存档  [f]//filename  [v]//详细信息
+e.g.:tar cf archive.tar file1 file2 file3 //将file1，2，3 归档入archive.tar  [--xattrs]//存储除了文件所有权和权限的其他属性，如SELinux和ACL
+e.g.:tar tf /root/etc.tar  //列出etc.tar的内容   
+e.g.:tar xf /root/etc.tar  //提取etc.tar到当前目录
+tar [z]//gzip压缩  [j]//bzip压缩  [J]//XZ压缩
+e.g.:tar czf /root/sshconfig.tar.xz /etc/ssh  //压缩/etc/ssh 到 /root/sshconfig.tar.xz
+e.g.:tar xzf /root/sshconfig.tar.xz //解压缩到当前目录
+
+scp命令：
+上传：scp [file1] [file2] hostname/ip:绝对路径 //file用绝对路径表示
+下载：scp hostname/ip:/file1  //本地目录
+scp -r //递归复制
+sftp hostname //连接奥hostname，可以用mkdir等命令，用put上传到用户主目录，get下载到当前目录
+
+rsync 同步命令：
+*rsync命令与scp的区别是rsync仅复制系统间的差异部分，而scp复制全部内容
+rsync [-n]//空运行，仅显示运行结果而不做变更 [-v]//同步时向输出中添加详细信息  [-a]//启用存档模式
+*存档模式：[-r]//递归同步  [-L]//同步符号链接  [-p]//保留权限  [-t]//保留时间戳  [-g]//保留组所有权  [-o]//保留文件所有者  [-P]//同步设备文件
+
+yum的基本运用：
+yum list  //列出已安装和可用软件
+yum grouplist  //列出已安装可用组
+yum search keyword  //按keyword搜索软件包
+yum info pacagename  //显示软件包详细信息
+yum install pacagename  //安装软件
+yum grouplist groupname  //安装软件包组
+yum update  //更新所有软件包
+yum remove pacagename  //删除软件包
+yum history  //显示事务历史记录
+yum repolist all  //查看可用的存储库
+yum -config-manager  //启用/禁用存储库  文件位置及设置参数：/etc/yum.repos.d/redhat.repo enabled
+
+RPM包：
+rpm -q -a  //已安装的所有软件包
+rpm -q packgename  //当前安装的packgename
+rpm -q -f  /etc/yum.repos.d  //提供安装包的filename
+rpm -q -i  //软件包信息
+rpm -q -L  //列出指定软件包安装的文件
+rpm -q -l  //仅列出配置文件
+rpm -q -d  //仅列出文档文件
+rpm -q --scripts  //列出可能再安装或删除软件包前后运行的shell脚本
+rpm -q --changelog  //列出软件包的更改信息
+yum localinstall *.rpm  //安装rpm包
+rpm -q *.rpm  //同上
+rpm -irh packgefile.rpm  //同上
+
+文件系统：
+挂载的概念：将新文件系统添加到现有目录树的过程称为挂载。
+挂载点：挂载了新文件系统的目录。
+ls -l  //第一位显示为b为特殊文件类型，代表块设备
+逻辑卷管理（LVM）:逻辑卷与驻留物理磁盘上的分区相当，LVM可进行动态管理
+df //显示总磁盘空间  [-h]//自动进行单位换算
+du //显示某一目录树使用空间  [-h]//自动进行单位换算
+*虚拟机磁盘驱动器一般显示为： /dev/vd 或 /dev/xvd
+
+
+
+
+
+
+         
+         
 
 
 
