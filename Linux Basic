@@ -17,7 +17,7 @@ touch  //创建文件
 > filename  //重定向stdout到文件(覆盖)
 >> filename  //重定向stdout到文件（附加）
 2> filename  //重定向stderr到文件
-2>  /dev/null  //将stderr错误信息重定向奥/dev/null，从而将它丢弃
+2> /dev/null  //将stderr错误信息重定向到/dev/null，从而将它丢弃
 &> filename  //将stdout和stderr合并到一个文件
 >>filename 2>&1  //合并stdout和stderr，并附加到当前文件
 cat  //首尾连接文件，或者查看文件
@@ -95,7 +95,7 @@ chmod 2755 /var/log/journal  //对日志目录设置权限并重其系统
 killall -USR | systemd-journald  //等效于重启系统
 
 系统时钟：
-timedatectl  //显示当前时间设置相关信息 []set-timezone America/Phoenix  //设置时区  [set-time 9:00:00]  
+timedatectl  //显示当前时间设置相关信息 [set-timezone America/Phoenix]  //设置时区  [set-time 9:00:00]  
 //设置时间  [set-ntp true/false]  //设置时间自动同步  [list-timezones]  //时区查询
 chronyc sources -v  //验证本地硬件时钟是否同步
 
